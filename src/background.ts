@@ -45,12 +45,12 @@ async function updateAction(state: Pick<PlaybackSnapshot, 'phase' | 'session'>):
   }
   await chrome.action.setTitle({
     title: stale
-      ? 'Local Listen — the source page changed'
+      ? 'hey read this page — the source page changed'
       : playing
-        ? 'Local Listen — reading'
+        ? 'hey read this page — reading'
         : preparing
-          ? 'Local Listen — preparing speech'
-          : 'Open Local Listen',
+          ? 'hey read this page — preparing speech'
+          : 'Open hey read this page',
   });
 }
 

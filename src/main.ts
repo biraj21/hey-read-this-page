@@ -206,7 +206,7 @@ function render(): void {
     <main class="player-shell">
       <header class="player-header">
         <span class="brand-mark" aria-hidden="true">⌁</span>
-        <div><strong>Local Listen</strong><p>Listen to pages in your browser</p></div>
+        <div><strong>hey read this page</strong><p>Listen to pages in your browser</p></div>
       </header>
 
       <section class="now-reading" aria-label="Current reading">
@@ -319,6 +319,6 @@ function escapeHtml(value: string): string {
 
 function getAppRoot(): HTMLDivElement {
   const root = document.querySelector<HTMLDivElement>('#app');
-  if (!root) throw new Error('Local Listen could not find its app root.');
+  if (!root) throw new Error('hey read this page could not find its app root.');
   return root;
 }

@@ -15,7 +15,7 @@ export function captureReadableText(sourceAttribute: string, sourceWrapperAttrib
       .replace(/\u00a0/g, ' ')
       .trim();
   const ignored =
-    'script, style, noscript, svg, canvas, nav, aside, footer, form, button, input, select, textarea, a';
+    'script, style, noscript, svg, canvas, nav, aside, footer, form, button, input, select, textarea';
   const selected = normalizeText(window.getSelection()?.toString() || '');
   const title = normalizeText(document.querySelector('h1')?.textContent || document.title) || 'Untitled page';
   removePreviousSourceWrappers();
@@ -44,7 +44,7 @@ export function captureReadableText(sourceAttribute: string, sourceWrapperAttrib
     const textNode = node as Text;
     const parent = textNode.parentElement;
     const text = normalizeText(textNode.textContent || '');
-    if (!parent || !text || parent.closest(ignored)) continue;
+    if (!parent || !text || isIgnoredText(parent)) continue;
 
     const boundary = nearestReadingBoundary(parent);
     if (
@@ -123,6 +123,23 @@ export function captureReadableText(sourceAttribute: string, sourceWrapperAttrib
 
   function nearestReadingBoundary(element: Element): Element | null {
     return element.closest('p, li, blockquote, pre, h1, h2, h3, h4, h5, h6, dt, dd');
+  }
+
+  function isIgnoredText(element: Element): boolean {
+    if (element.closest(ignored)) return true;
+    // Preserve ordinary inline link text (for example, “click here”), but do
+    // not read standalone in-page reference markers such as “[1]”.
+    for (
+      let current: Element | null = element;
+      current && current !== document.body;
+      current = current.parentElement
+    ) {
+      const text = normalizeText(current.textContent || '');
+      if (text.length > 12) return false;
+      const linkCount = current.matches('a[href^="#"]') ? 1 : current.querySelectorAll('a[href^="#"]').length;
+      if (linkCount === 1 && /^\[?\d+\]?$/.test(text)) return true;
+    }
+    return false;
   }
 
   function wrapTextNode(textNode: Text, sequence: number): string {

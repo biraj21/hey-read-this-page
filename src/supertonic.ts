@@ -54,7 +54,7 @@ export async function generateSupertonic(
 ): Promise<SupertonicAudio> {
   const [engine, style] = await Promise.all([loadEngine(() => {}), loadVoiceStyleFor(voice)]);
   const boundedSpeed = Math.min(2, Math.max(0.7, speed));
-  console.log('[Local Listen] Supertonic 3 inference input', {
+  console.log('[hey read this page] Supertonic 3 inference input', {
     text,
     voice,
     speed: boundedSpeed,
@@ -102,7 +102,7 @@ async function createEngine(onProgress: (info: unknown) => void): Promise<Engine
       );
       return { textToSpeech: loaded.textToSpeech as TextToSpeech, backend: 'webgpu' };
     } catch (error) {
-      console.warn('[Local Listen] Supertonic 3 WebGPU initialization failed; using WASM.', error);
+      console.warn('[hey read this page] Supertonic 3 WebGPU initialization failed; using WASM.', error);
     }
   }
 

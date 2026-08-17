@@ -1,12 +1,19 @@
 {
   "manifest_version": 3,
-  "name": "Local Listen",
+  "name": "hey read this page",
   "version": "0.1.0",
   "description": "A private, on-device page reader powered by Supertonic.",
   "content_security_policy": {
     "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
   },
-  "permissions": ["storage", "scripting", "activeTab", "tabs", "windows", "offscreen"],
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab",
+    "tabs",
+    "windows",
+    "offscreen"
+  ],
   "host_permissions": ["<all_urls>"],
   "background": {
     "service_worker": "src/background.ts",
@@ -20,7 +27,7 @@
     }
   ],
   "action": {
-    "default_title": "Open Local Listen",
+    "default_title": "Open hey read this page",
     "default_popup": "index.html"
   }
 }
