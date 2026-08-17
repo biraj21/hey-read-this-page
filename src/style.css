@@ -1,0 +1,322 @@
+html,
+body,
+#app {
+  width: 380px;
+  min-width: 380px;
+  max-width: 380px;
+  height: 560px;
+  min-height: 560px;
+  max-height: 560px;
+  overflow-x: hidden;
+}
+
+:root {
+  color: #1d2544;
+  background: #f6f5f1;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+button,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.player-shell {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding: 14px;
+}
+
+.player-header,
+.transport,
+.settings {
+  display: flex;
+  align-items: center;
+}
+
+.player-header {
+  gap: 8px;
+  min-height: 30px;
+}
+
+.brand-mark {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 9px;
+  color: #f8e7c1;
+  background: #293865;
+  font-size: 21px;
+  line-height: 1;
+}
+
+.player-header div {
+  min-width: 0;
+  flex: 1;
+}
+
+.player-header strong {
+  display: block;
+  color: #222c51;
+  font-size: 14px;
+  letter-spacing: -0.02em;
+}
+
+.player-header p,
+.now-reading p,
+.status {
+  overflow: hidden;
+  margin: 1px 0 0;
+  color: #7b8091;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.now-reading {
+  position: relative;
+  min-height: 84px;
+  margin-top: 12px;
+  padding: 10px 100px 10px 11px;
+  border: 1px solid #e3ded4;
+  border-radius: 12px;
+  color: #293865;
+  background: #fffdf9;
+  font-size: 11px;
+}
+
+.now-reading strong {
+  display: block;
+  overflow: hidden;
+  color: #2a345a;
+  font-size: 12px;
+  line-height: 1.25;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.now-reading > p:last-of-type {
+  margin-top: 4px;
+  color: #70778b;
+}
+
+.open-tab-button {
+  position: absolute;
+  top: 30px;
+  right: 10px;
+  border: 0;
+  border-radius: 7px;
+  padding: 6px 7px;
+  color: #8b5034;
+  background: #f8e9dc;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.open-tab-button:hover {
+  background: #f2dccb;
+}
+
+.open-tab-button.is-hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #9a7551;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.now-reading .eyebrow {
+  margin-bottom: 5px;
+}
+
+.transport {
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.transport button {
+  height: 38px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.read-button {
+  flex: 1.3;
+  color: #fffaf2;
+  background: #293865;
+  box-shadow: 0 4px 10px rgba(41, 56, 101, 0.16);
+}
+
+.transport .play-button {
+  flex: 0.8;
+  color: #2d385d;
+  border-color: #d8d4ca;
+  background: #fffdf9;
+}
+
+.settings {
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.settings label {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  align-items: center;
+  gap: 7px;
+  color: #72788d;
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.settings select {
+  min-width: 0;
+  flex: 1;
+  border: 1px solid #e2ded5;
+  border-radius: 7px;
+  padding: 5px;
+  outline: none;
+  color: #293457;
+  background: #fffdf9;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.queue {
+  display: flex;
+  min-height: 0;
+  flex: 1;
+  flex-direction: column;
+  margin-top: 13px;
+}
+
+.queue > .eyebrow {
+  margin-bottom: 6px;
+}
+
+.queue > div {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  gap: 4px;
+  overflow: auto;
+  padding-right: 3px;
+  scrollbar-gutter: stable;
+}
+
+.empty-queue {
+  justify-content: center;
+  border: 1px dashed #ddd7cc;
+  border-radius: 12px;
+  padding: 16px;
+  color: #777d8d;
+}
+
+.empty-queue .eyebrow {
+  margin-bottom: 6px;
+}
+
+.empty-queue p:last-child {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.queue-item {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  gap: 8px;
+  border: 1px solid #e6e1d7;
+  border-radius: 9px;
+  padding: 8px;
+  color: #626a80;
+  background: rgba(255, 255, 255, 0.58);
+  text-align: left;
+}
+
+.queue-item:hover {
+  background: #fffcf8;
+}
+
+.queue-item.current {
+  border-color: #c86f49;
+  background: #fff3e7;
+  box-shadow: 0 3px 12px rgba(182, 92, 66, 0.14);
+}
+
+.queue-item span {
+  padding-top: 1px;
+  color: #bc805e;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+}
+
+.queue-item.current span {
+  color: #9b432d;
+}
+
+.queue-item em {
+  flex: 1;
+  overflow: hidden;
+  color: inherit;
+  font-family: Georgia, serif;
+  font-size: 11px;
+  font-style: normal;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: pre-wrap;
+}
+
+.bottom-controls {
+  flex: 0 0 auto;
+  margin-top: 10px;
+}
+
+.status {
+  display: -webkit-box;
+  min-height: 27px;
+  margin: 0 2px;
+  overflow: hidden;
+  color: #7b8091;
+  font-size: 10px;
+  line-height: 1.35;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.error {
+  color: #a34f49;
+}

@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Local Listen",
+  "version": "0.1.0",
+  "description": "A private, on-device page reader powered by Supertonic.",
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  },
+  "permissions": ["storage", "scripting", "activeTab", "tabs", "windows", "offscreen"],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "src/background.ts",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["src/content.ts"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Open Local Listen",
+    "default_popup": "index.html"
+  }
+}
